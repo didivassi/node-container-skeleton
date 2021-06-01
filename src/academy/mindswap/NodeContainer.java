@@ -55,9 +55,7 @@ public class NodeContainer {
             if(currentNode.getNext()==null){
                 return false;//did not found
             }
-            if(currentNode.getData()==data){
-                break;
-            }
+
             previous=currentNode;
             currentNode=currentNode.getNext();
         }

@@ -51,7 +51,6 @@ public class NodeContainer {
 
         Node currentNode=head;
         Node previous = head;
-        Node next=null;
         while (currentNode.getData()!=data){
             if(currentNode.getNext()==null){
                 return false;//did not found
@@ -59,11 +58,10 @@ public class NodeContainer {
             if(currentNode.getData()==data){
                 break;
             }
-            previous=currentNode;//é  o que quero retirar
+            previous=currentNode;
             currentNode=currentNode.getNext();
         }
         previous.setNext(currentNode.getNext());
-
         length--;
         return true;
     }

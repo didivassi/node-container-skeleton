@@ -28,7 +28,7 @@ public class NodeContainer {
         int index=-1;
         while (currentNode.getData()!=data){
             if(currentNode.getNext()==null){
-                return index;
+                return -1;
             }
             currentNode=currentNode.getNext();
             index++;

@@ -11,13 +11,17 @@ public class NodeContainerTest {
         test.assertCondition("Retrieving index correctly?", test.testIndex());
         test.assertCondition("Retrieving data correctly?", test.testGet());
         test.assertCondition("Removing data correctly?", test.testRemove());
+
+        NodeContainer<Integer> test1 =new NodeContainer<>();
+        test1.add(2);
+
     }
 
     public boolean testAdd() {
-        NodeContainer list = new NodeContainer();
-        Object element1 = "one";
-        Object element2 = "two";
-        Object element3 = "three";
+        NodeContainer<String> list = new NodeContainer();
+        String element1 = "one";
+        String element2 = "two";
+        String element3 = "three";
 
         if (list.size() != 0) {
             return false;
@@ -41,10 +45,10 @@ public class NodeContainerTest {
     }
 
     public boolean testIndex() {
-        NodeContainer list = new NodeContainer();
-        Object element1 = "one";
-        Object element2 = "two";
-        Object element3 = "three";
+        NodeContainer<String> list = new NodeContainer();
+        String element1 = "one";
+        String element2 = "two";
+        String element3 = "three";
 
         if (list.indexOf(element1) != -1 || list.indexOf(element2) != -1 || list.indexOf(element3) != -1) {
             return false;
@@ -76,10 +80,10 @@ public class NodeContainerTest {
     }
 
     public boolean testGet() {
-        NodeContainer list = new NodeContainer();
-        Object data1 = "one";
-        Object data2 = "two";
-        Object data3 = "three";
+        NodeContainer<String> list = new NodeContainer();
+        String data1 = "one";
+        String data2 = "two";
+        String data3 = "three";
 
         if (list.get(0) != null || list.get(1) != null || list.get(2) != null) {
             return false;
@@ -132,9 +136,9 @@ public class NodeContainerTest {
 
     public boolean testRemove() {
         NodeContainer list = new NodeContainer();
-        Object data1 = "one";
-        Object data2 = "two";
-        Object data3 = "three";
+        String data1 = "one";
+        String data2 = "two";
+        String data3 = "three";
 
         if (list.remove(data1)) {
             return false;

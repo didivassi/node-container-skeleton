@@ -1,6 +1,6 @@
 package academy.mindswap;
 
-public class NodeContainer {
+public class NodeContainer<T> {
 
     private Node head;
     private int length;
@@ -16,14 +16,14 @@ public class NodeContainer {
     }
 
     // ADDS A NEW ELEMENT TO THE END OF THE CONTAINER
-    public void add(Object data) {
-        Node lastNode=transverseNode(head,null);
+    public void add(T data) {
+        Node lastNode=transverseNode(head);
         lastNode.setNext(new Node(data));
         length++;
     }
 
     // RETURNS THE INDEX OF THE NODE IN WHICH THE SPECIFIED OBJECT IS STORED
-    public int indexOf(Object data) {
+    public int indexOf(T data) {
         Node currentNode=head;
         int index=-1;
         while (currentNode.getData()!=data){
@@ -47,15 +47,13 @@ public class NodeContainer {
     }
 
     // REMOVES THE SPECIFIED OBJECT FROM THE CONTAINER
-    public boolean remove(Object data) {
-
+    public boolean remove(T data) {
         Node currentNode=head;
         Node previous = head;
         while (currentNode.getData()!=data){
             if(currentNode.getNext()==null){
                 return false;//did not found
             }
-
             previous=currentNode;
             currentNode=currentNode.getNext();
         }
@@ -65,9 +63,9 @@ public class NodeContainer {
     }
 
 
-    private Node transverseNode(Node tempNode, Object condition){
-        while (tempNode.getNext()!=condition){
-           return transverseNode(tempNode.getNext(),condition);
+    private Node transverseNode(Node tempNode){
+        while (tempNode.getNext()!=null){
+           return transverseNode(tempNode.getNext());
         }
         return tempNode;
     }

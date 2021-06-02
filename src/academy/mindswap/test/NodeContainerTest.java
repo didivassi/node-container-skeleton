@@ -13,7 +13,17 @@ public class NodeContainerTest {
         test.assertCondition("Removing data correctly?", test.testRemove());
 
         NodeContainer<Integer> test1 =new NodeContainer<>();
+        test1.add(1);
         test1.add(2);
+        test1.add(3);
+        test1.add(4);
+
+       // System.out.println(test1.indexOf(2));
+
+        for (Integer no:test1) {
+            System.out.println(no);
+
+        }
 
     }
 

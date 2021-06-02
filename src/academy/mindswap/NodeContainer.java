@@ -1,8 +1,10 @@
 package academy.mindswap;
 
-public class NodeContainer<T> {
+import java.util.Iterator;
 
-    private Node head;
+public class NodeContainer<T> implements Iterable<T>{
+
+    private Node<T> head;
     private int length;
 
 
@@ -37,8 +39,8 @@ public class NodeContainer<T> {
     }
 
     // RECEIVES AN INDEX AND RETURNS THE OBJECT STORED IN THAT NODE
-    public Object get(int index) {
-        Node currentNode=head;
+    public T get(int index) {
+        Node<T> currentNode=head;
         if(index>=length){return null;}
         for (int i = 0; i <=index ; i++) {
             currentNode=currentNode.getNext();
@@ -48,8 +50,8 @@ public class NodeContainer<T> {
 
     // REMOVES THE SPECIFIED OBJECT FROM THE CONTAINER
     public boolean remove(T data) {
-        Node currentNode=head;
-        Node previous = head;
+        Node<T> currentNode=head;
+        Node<T> previous = head;
         while (currentNode.getData()!=data){
             if(currentNode.getNext()==null){
                 return false;//did not found
@@ -63,36 +65,54 @@ public class NodeContainer<T> {
     }
 
 
-    private Node transverseNode(Node tempNode){
+    private Node<T> transverseNode(Node<T> tempNode){
         while (tempNode.getNext()!=null){
            return transverseNode(tempNode.getNext());
         }
         return tempNode;
     }
 
-    private class Node {
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            Node<T> node =head;
+            @Override
+            public boolean hasNext() {
+                return node.getNext()!=null;
+            }
 
-        private Object data;
-        private Node next;
+            @Override
+            public T next() {
+                node=node.getNext();
+              //  node.setNext(node.getNext());
+                return  node.getData();
+            }
+        };
+    }
 
-        public Node(Object data) {
+    private class Node<T> {
+
+        private T data;
+        private Node<T> next;
+
+        public Node(T data) {
             this.data = data;
             next = null;
         }
 
-        public Object getData() {
+        public T getData() {
             return data;
         }
 
-        public void setData(Object data) {
+        public void setData(T data) {
             this.data = data;
         }
 
-        public Node getNext() {
+        public Node<T> getNext() {
             return next;
         }
 
-        public void setNext(Node next) {
+        public void setNext(Node<T> next) {
             this.next = next;
         }
     }

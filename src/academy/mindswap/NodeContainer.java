@@ -1,6 +1,7 @@
 package academy.mindswap;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class NodeContainer<T> implements Iterable<T>{
 
@@ -82,7 +83,10 @@ public class NodeContainer<T> implements Iterable<T>{
             }
 
             @Override
-            public T next() {
+            public T next() throws NoSuchElementException {
+                if(node.getNext()==null){
+                    throw new NoSuchElementException();
+                }
                 node=node.getNext();
               //  node.setNext(node.getNext());
                 return  node.getData();

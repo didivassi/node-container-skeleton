@@ -84,11 +84,11 @@ public class NodeContainer<T> implements Iterable<T>{
 
             @Override
             public T next() throws NoSuchElementException {
-                if(node.getNext()==null){
+                if(!hasNext()){
                     throw new NoSuchElementException();
                 }
                 node=node.getNext();
-              //  node.setNext(node.getNext());
+              //  node.setNext(node.getNext());Stupid Error
                 return  node.getData();
             }
         };
